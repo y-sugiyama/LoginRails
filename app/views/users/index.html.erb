@@ -1,0 +1,59 @@
+
+<div class="users index">
+
+    <div class="container">
+
+        <!-- content -->
+        <div class="row">
+            <!-- left -->
+            <div class="col-md-3">   
+                <%# content_for :menu do  %>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          Menu
+                      </div>
+                      <!-- 敢えてbodyを作らないことで、メニューを詰める -->
+                      <!-- <div class="panel-body"> -->
+                      <ul class="nav nav-pills nav-stacked">
+                          <li><i class="glyphicon glyphicon-pencil"> <%= link_to "ユーザ", users_path %></i> </li>
+                      </ul> 
+                      <!-- </div> -->
+                  </div>
+
+                <%# end %>
+            </div>
+
+            <div class="col-md-9">
+                <h2> ユーザ一覧</h2>
+                <p><%= link_to '新規追加', new_user_path, :method=>:get , class: "btn btn-default" %></p>
+                <table class="table table-striped">
+                    <tr>
+                        <th>メールアドレス</th>
+                        <th>権限</th>
+                        <th>アクション</th>
+                    </tr>
+
+                    <% @users.each do |user| %>
+
+                    
+                      <tr>
+                          <td><%= user.email  %></td>
+                          
+                          <td></td>
+                          
+                          <td><%= link_to '編集',edit_user_path(user), :method=> :put ,class: "btn btn-default" %>
+                          <%= link_to '削除',user_path(user), :method=> :delete, data: { confirm: '本当に削除してよろしいですか?'} , class: "btn btn-danger" %></td>
+                      </tr>
+
+                    <% end %>
+
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
