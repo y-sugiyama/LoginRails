@@ -1,4 +1,4 @@
-<div class="users index">
+<div class="users form">
 
     <div class="container">
 
@@ -6,7 +6,7 @@
         <div class="row">
             <!-- left -->
             <div class="col-md-3">   
-<%# content_for :menu do  %>
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Menu
@@ -19,30 +19,28 @@
                     <!-- </div> -->
                 </div>
 
-<%# end %>
+
             </div>
 
             <div class="col-md-9">
 
                 <h2>編集画面</h2>
                 <%= form_for(:user, url: user_path(@user),html:{:method=>:patch}) do |f| %>
-  <%#= devise_error_messages! %>
+  
 
                   <div class="field">
                       <%= f.label :email %><br />
                       <%= f.email_field :email, class: 'form-control', autofocus: true %>
                     </div>
 
-    <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <%#*<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %>%>
-    <%# end %>
+   
 
                     <div class="field">
                         <%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br />
                         <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
                           <% if @minimum_password_length %>
                             <br />
-                            <em><%= @minimum_password_length %> 文字以上</em>
+                            <p><%= @minimum_password_length %> 文字以上</p>
                           <% end %>
                       </div>
 
@@ -57,9 +55,11 @@
                           </div>
 
 
-                          <div class="form-control">
-                              <%= f.submit "更新", class: "btn btn-primary" %>
+                          <div class="actions">
+                              <%= f.submit "更新", class: "btn btn-primary"  %>
                             </div>
+                 
+                
 
                           <% end %>
 
