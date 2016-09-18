@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+#権限管理
+gem "pundit"
 #日本語化
 gem 'devise-i18n'
 gem 'devise-i18n-views'
