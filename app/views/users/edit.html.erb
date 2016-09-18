@@ -25,15 +25,15 @@
             <div class="col-md-9">
 
                 <h2>編集画面</h2>
-                <%= form_for(:user, url: user_path(@user),html:{:method=>:patch}) do |f| %>
-  
+                <%= form_for(:user, url: user_path(@user), html:{:method=>:patch}) do |f| %>
+
 
                   <div class="field">
                       <%= f.label :email %><br />
                       <%= f.email_field :email, class: 'form-control', autofocus: true %>
                     </div>
 
-   
+
 
                     <div class="field">
                         <%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br />
@@ -54,22 +54,27 @@
                             <%= f.password_field :current_password, class: 'form-control', autocomplete: "off" %>
                           </div>
 
-
-                          <div class="actions">
-                              <%= f.submit "更新", class: "btn btn-primary"  %>
+                          <div class="field">
+                              <%= f.label :role %><br />
+                              <%= f.select :role ,[["管理者", "admin"], ["ユーザ", "user"]] , class: 'form-control', autofocus: true %>
                             </div>
-                 
-                
-
-                          <% end %>
 
 
-                          <%= link_to "戻る", :back %>
+                            <div class="actions">
+                                <%= f.submit "更新", class: "btn btn-primary"  %>
+                              </div>
 
 
 
+                            <% end %>
 
-                      </div>
-                  </div>
-              </div>
-          </div>
+
+                            <%= link_to "戻る", :back %>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
+
   
   def index
     @users = User.all
@@ -45,7 +48,7 @@ class UsersController < ApplicationController
       private
       def user_params
         #   フォームに不正な値が入ってないかフィルタリング
-        params.require(:user).permit(:email,:password)
+        params.require(:user).permit(:email,:password,:role)
       end
   
       def set_user
