@@ -33,7 +33,7 @@
                         <th>アクション</th>
                     </tr>
 
-                    <% @users.each do |user| %>
+                    <%  @users.each do |user| %>
 
                     
                       <tr>
@@ -41,8 +41,9 @@
                           
                           <td><%= user.role  %></td>
                           
-                          <td><%= link_to '編集',edit_user_path(user), :method=> :put ,class: "btn btn-default" %>
+                          <td><%= link_to '編集',edit_user_path(user), :method=> :get ,class: "btn btn-default" %>
                           <%= link_to '削除',user_path(user), :method=> :delete, data:{confirm: '本当に削除してよろしいですか?'} , class: "btn btn-danger" %></td>
+                         
                       </tr>
 
                     <% end %>

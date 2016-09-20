@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
-  include Pundit
+include Banken
+#  include Pundit
   protect_from_forgery with: :exception
 end

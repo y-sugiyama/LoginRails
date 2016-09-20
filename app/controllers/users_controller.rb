@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+ before_action :authenticate_user!
 
 
   
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+#    authorize @admin
     if @user.save
       redirect_to users_path ,notice:'ユーザ登録が完了しました'
     else
@@ -24,8 +25,9 @@ class UsersController < ApplicationController
   
 
   def destroy
-   @user.destroy
-   redirect_to users_path ,   notice:'ユーザを削除しました'
+    @user.destroy
+#  authorize @admin
+    redirect_to users_path ,   notice:'ユーザを削除しました'
   end
 
   def edit
@@ -33,25 +35,28 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user.update(user_params)
-      redirect_to users_path , notice:'ユーザを更新しました'
+
+    authorize! @user
+    if @user.update(user_params)    
+      redirect_to @user , notice:'ユーザを更新しました'
     else
       render :edit
       
     end
   end
   
-      def show
+  def show
   
-      end
+  end
 
-      private
-      def user_params
-        #   フォームに不正な値が入ってないかフィルタリング
-        params.require(:user).permit(:email,:password,:role)
-      end
+  private
+  def user_params
+    #   フォームに不正な値が入ってないかフィルタリング
+    params.require(:user).permit(:email,:password,:role)
+  end
   
-      def set_user
-        @user = User.find(params[:id])
-      end
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+end
