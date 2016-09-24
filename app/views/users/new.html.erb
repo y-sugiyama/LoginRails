@@ -3,56 +3,35 @@
     <div class="container">
 
         <!-- content -->
-        <div class="row">
-            <!-- left -->
-            <div class="col-md-3">   
-<%# content_for :menu do  %>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Menu
-                    </div>
-                    <!-- 敢えてbodyを作らないことで、メニューを詰める -->
-                    <!-- <div class="panel-body"> -->
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><i class="glyphicon glyphicon-pencil"> <%= link_to "ユーザ", users_path %></i> </li>
-                    </ul> 
-                    <!-- </div> -->
-                </div>
+        <div class="row"> 
 
-<%# end %>
-            </div>
+            <%= render 'menu' %>
+
 
             <div class="col-md-9">
 
                 <h2>新規登録画面</h2>
-                <%= form_for(:user, url: users_path) do |f| %>
-  <%#= devise_error_messages! %>
+                <%= simple_form_for(:user, url: users_path) do |f| %>
+                  <% if @user.errors.any? %>
+                    <div id="error_explanation">
+                        <h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
 
-                  <div class="field">
-                      <%= f.label :email %><br />
-                      <%= f.email_field :email, class: 'form-control', autofocus: true %>
+                        <ul>
+                            <% @user.errors.full_messages.each do |message| %>
+                              <li><%= message %></li>
+                            <% end %>
+                        </ul>
                     </div>
+                  <% end %>
+                   <%= f.input :email , label: 'メールアドレス',error: 'emailは必須項目です' %>
+                  <%= f.input  :password , label: 'パスワード' ,error: 'passwordは必須項目です' %>
+                 
+                  <%= f.input  :password_confirmation %>
+                  <%= f.input :role , collection: [["管理者", "admin"], ["ユーザ", "user"]]%>
+                  <%= f.button :submit,  "新規登録", class: "btn btn-primary" %>
+                  <% end %>
 
-                    <div class="field">
-                        <%= f.label :password %>
-                        <% if @minimum_password_length %>
-                          <em>(<%= @minimum_password_length %> characters minimum)</em>
-                        <% end %><br />
-                        <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
-                      </div>
-
-                      <div class="field">
-                          <%= f.label :password_confirmation %><br />
-                          <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
-                        </div>
-
-                        <div class="field">
-                            <%= f.label :role %><br />
-                            <%= f.select :role ,[["管理者", "admin"], ["ユーザ", "user"]] , class: 'form-control', autofocus: true %>
-                          </div>
-                          <div class="actions">
-                              <%= f.submit  "新規登録", class: "btn btn-primary" %>
-                            </div>
-                          <% end %>
-
-          <%#= render "devise/shared/links" %>
+              </div>
+          </div>
+      </div>
+  </div>

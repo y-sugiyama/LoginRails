@@ -15,7 +15,9 @@ resources :users
   
    
     
-  root 'pages#top'
+#  root 'pages#top'
+root 'users#index'
+  get'/top' => 'pages#top'
   get'/about' => 'pages#about'
   get'/access' => 'pages#access'
   

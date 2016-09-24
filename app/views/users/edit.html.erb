@@ -1,80 +1,32 @@
-<div class="users form">
+<%= render 'menu' %>
+<div class="users index">
 
     <div class="container">
 
         <!-- content -->
-        <div class="row">
-            <!-- left -->
-            <div class="col-md-3">   
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Menu
-                    </div>
-                    <!-- 敢えてbodyを作らないことで、メニューを詰める -->
-                    <!-- <div class="panel-body"> -->
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><i class="glyphicon glyphicon-pencil"> <%= link_to "ユーザ", users_path %></i> </li>
-                    </ul> 
-                    <!-- </div> -->
-                </div>
-
-
-            </div>
+        <div class="row"> 
 
             <div class="col-md-9">
 
                 <h2>編集画面</h2>
-                <%= form_for(:user, url: user_path(@user), html:{:method=>:patch}) do |f| %>
+                <%= simple_form_for(:user, url: user_path(@user), html:{:method=>:patch}) do |f| %>
 
-
-                  <div class="field">
-                      <%= f.label :email %><br />
-                      <%= f.email_field :email, class: 'form-control', autofocus: true %>
-                    </div>
-
-
-
-                    <div class="field">
-                        <%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br />
-                        <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
-                          <% if @minimum_password_length %>
-                            <br />
-                            <p><%= @minimum_password_length %> 文字以上</p>
-                          <% end %>
-                      </div>
-
-                      <div class="field">
-                          <%= f.label :password_confirmation %><br />
-                          <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
-                        </div>
-
-                        <div class="field">
-                            <%= f.label :current_password %> <i>(現在使用しているパスワードを入力してください)</i><br />
-                            <%= f.password_field :current_password, class: 'form-control', autocomplete: "off" %>
-                          </div>
-
-                          <div class="field">
-                              <%= f.label :role %><br />
-                              <%= f.select :role ,[["管理者", "admin"], ["ユーザ", "user"]] , class: 'form-control', autofocus: true %>
-                            </div>
-
-
-                            <div class="actions">
-                                <%= f.submit "更新", class: "btn btn-primary"  %>
-                              </div>
+   
+                
+                  <%= f.input :email , label: 'メールアドレス' %>
+                  <%= f.input  :password , label: 'パスワード' ,error: 'passwordは必須項目です' %>
+                 
+                  <%= f.input  :password_confirmation %>
+                  <%= f.input :role , collection: [["管理者", "admin"], ["ユーザ", "user"]]%>
+                  <%= f.button :submit,  "更新", class: "btn btn-primary" %>
+                  <% end %>
 
 
 
-                            <% end %>
+                  <%= link_to "戻る", :back %>
 
+              </div>
 
-                            <%= link_to "戻る", :back %>
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
+      </div>
+  </div>
