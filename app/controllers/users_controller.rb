@@ -30,13 +30,13 @@ class UsersController < ApplicationController
   
 
   def destroy
-     authorize! @user
+     authorize! 
     @user.destroy
     redirect_to root_path ,   notice:'ユーザを削除しました'
   end
 
   def edit
-    
+         authorize! 
   end
   
   def update
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     #   フォームに不正な値が入ってないかフィルタリング
     #ストロングパラメータを使って保存を許可するカラムを指定
     #params[:user]={ email:"piyopiyo@ppp.com", password:"piyopiyo", role:"admin"}を許可するという意味
-    params.require(:user).permit(:id,:email,:password,:role)
+    params.require(:user).permit(:id,:email,:password,:role,:password_confirmation)
   end
   
   def set_user

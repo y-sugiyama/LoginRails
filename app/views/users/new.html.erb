@@ -11,23 +11,14 @@
             <div class="col-md-9">
 
                 <h2>新規登録画面</h2>
-                <%= simple_form_for(:user, url: users_path) do |f| %>
-                  <% if @user.errors.any? %>
-                    <div id="error_explanation">
-                        <h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
-
-                        <ul>
-                            <% @user.errors.full_messages.each do |message| %>
-                              <li><%= message %></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                  <% end %>
-                   <%= f.input :email , label: 'メールアドレス',error: 'emailは必須項目です' %>
-                  <%= f.input  :password , label: 'パスワード' ,error: 'passwordは必須項目です' %>
+                <%= simple_form_for(@user, url: users_path) do |f| %>
                  
-                  <%= f.input  :password_confirmation %>
-                  <%= f.input :role , collection: [["管理者", "admin"], ["ユーザ", "user"]]%>
+                  
+                   <%= f.input :email , label: 'メールアドレス',error: "メールアドレスを入力してください" %>
+                  <%= f.input  :password , label: 'パスワード' ,error: 'パスワードを入力してください' %>
+                 
+                  <%= f.input  :password_confirmation,label: 'パスワード(確認)',error: 'パスワード(確認)を入力してください' %>
+                  <%= f.input :role , collection: [["管理者", "admin"], ["ユーザ", "user"]],error: '権限を選択してください'%>
                   <%= f.button :submit,  "新規登録", class: "btn btn-primary" %>
                   <% end %>
 

@@ -2,7 +2,9 @@
 
 <div class="col-md-9">
     <h2> ユーザ一覧</h2>
+     <% if current_user.admin? %>
     <p><%= link_to '新規追加', new_user_path, :method=>:get , class: "btn btn-default" %></p>
+     <% end %>
       <table class="table table-striped">
           <tr>
               <th>ID</th>
@@ -19,10 +21,12 @@
                 <td><%= user.email  %></td>
 
                 <td><%= user.role  %></td>
-                <% #if loyalty(@user, :users).update? %>
-                  <td><%= link_to '編集',edit_user_path(user), :method=> :get ,class: "btn btn-default" %>
-                        <%= link_to '削除',user_path(user), :method=> :delete, data:{confirm: '本当に削除してよろしいですか?'} , class: "btn btn-danger" %></td>
-                   <%# end %>
+
+                <td> <% if current_user.admin? %>
+                      <%= link_to '編集',edit_user_path(user), :method=> :get ,class: "btn btn-default" %>
+                        <%= link_to '削除',user_path(user), :method=> :delete, data:{confirm: '本当に削除してよろしいですか?'} , class: "btn btn-danger" %>
+                        <% end %>
+                    </td>
                 </tr>
 
               <% end %>
@@ -31,7 +35,7 @@
           </table>
       </div>
 
-        </div>
-    </div>
-</div>
+      </div>
+      </div>
+      </div>
 
