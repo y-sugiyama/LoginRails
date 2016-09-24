@@ -21,3 +21,12 @@
 
 en:
   hello: "Hello world"
+
+  banken:
+    default: 'あなたはこのアクションを実行する権限がありません.'
+    posts_loyalty:
+      update?: 'あなたは投稿を編集する権限がありません!'
+      create?: 'あなたは新規投稿する権限がありません!'
+      new?: 'あなたは新規投稿する権限がありません!'
+      
+ 

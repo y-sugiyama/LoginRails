@@ -10,12 +10,16 @@ Rails.application.routes.draw do
   
   # namespace :admin do
 resources :users
- 
+
 #  end
   
    
     
-  root 'pages#top'
+#  root 'pages#top'
+root 'users#index'
+  get'/top' => 'pages#top'
+  get'/about' => 'pages#about'
+  get'/access' => 'pages#access'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -3,6 +3,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
+#      t.string :role,              null: false, default: ""
+      
 #      暗号化したパスワード
       t.string :encrypted_password, null: false, default: ""
 
@@ -11,14 +13,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.datetime :reset_password_sent_at
 
       ## Rememberable
-      t.datetime :remember_created_at
+#      t.datetime :remember_created_at
 
       ## Trackable
-      t.integer  :sign_in_count, default: 0, null: false
-      t.datetime :current_sign_in_at
-      t.datetime :last_sign_in_at
-      t.string   :current_sign_in_ip
-      t.string   :last_sign_in_ip
+#      t.integer  :sign_in_count, default: 0, null: false
+#      t.datetime :current_sign_in_at
+#      t.datetime :last_sign_in_at
+#      t.string   :current_sign_in_ip
+#      t.string   :last_sign_in_ip
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -34,7 +36,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
       t.timestamps null: false
     end
+    
+    # create default administrator account
+#    user = User.create :role => "admin",
+#                       :email => "admin@admin.com",
+#                       :password =>"admin"
+#  
 
+    add_column :users, :role, :string
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
