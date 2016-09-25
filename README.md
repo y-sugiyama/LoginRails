@@ -5,7 +5,7 @@
 ログイン機能を持ったサイトの雛形になるようなプロジェクトです。
 Ruby on Rails5 で作成してます。
 
-![概要](https://raw.githubusercontent.com/y-sugiyama/LoginRails/master/images/loginrails.png)
+![概要](https://raw.githubusercontent.com/y-sugiyama/LoginRails/master/app/assets/images/loginrails.png)
 
 ## 要件
 
