@@ -5,11 +5,11 @@
 ログイン機能を持ったサイトの雛形になるようなプロジェクトです。
 Ruby on Rails5 で作成してます。
 
-![概要](https://raw.githubusercontent.com/y-sugiyama/JobSite/master/assets/images/loginrails.png)
+![概要](https://raw.githubusercontent.com/y-sugiyama/LoginRails/master/assets/images/loginrails.png)
 
 ## 要件
 
-- PHP 5.6 以上
+- ruby 2.2.2
 - SQLite 3.8.10.2
 
 ## インストール方法
