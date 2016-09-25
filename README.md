@@ -17,7 +17,7 @@ Ruby on Rails5 で作成してます。
 ```
 $ git clone https://github.com/y-sugiyama/LoginRails.git
 $ cd LoginRails
-$ bundle install --path=vender/bundle
+$ bundle install --path=vendor/bundle
 ```
 
 ## データベースのセットアップ
